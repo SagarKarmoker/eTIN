@@ -1,10 +1,27 @@
 const FormData = require("../models/formModel");
+const Ticket = require("../models/ticketModel");
+
+const getUserData = async (nid) => {
+    try {
+        const getFormData = await FormData.findOne({
+            "nid": nid,
+        })
+
+        if (!getFormData) {
+            return res.status(404).json({ message: 'Data not found' });
+        }
+
+        return getFormData;
+    } catch (error) {
+        console.log(error)
+    }
+}
 
 exports.changeContact = async (req, res) => {
     try {
         const user = req.user;
 
-        if(!req.body.contact) {
+        if (!req.body.contact) {
             return res.status(400).json({ message: 'Contact is required' });
         }
 
@@ -40,14 +57,42 @@ exports.isHavingTin = async (req, res) => {
         }
 
         if (getFormData.information.tin) {
-            res.status(200).json({ message: 'Yes, user has TIN', 
+            res.status(200).json({
+                message: 'Yes, user has TIN',
                 tin: getFormData.information.tin
-             });
+            });
         } else {
             res.status(202).json({ message: 'No, user does not have TIN' });
         }
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: 'Error getting data', error });
+    }
+}
+
+exports.generateTicket = async (req, res) => {
+    try {
+        const user = req.user;
+        const { requestType, description } = req.body;
+        const data = await getUserData(user.nid);
+
+        console.log(data)
+
+        const ticket = new Ticket({
+            ticketNumber: Math.random().toString(36).substring(7),
+            name: data.information.taxPayersName,
+            nid: user.nid,
+            phoneNumber: data.information.mobileNumber,
+            email: data.information.email,
+            requestType: requestType,
+            description: description,
+            status: 'Pending',
+        });
+
+        await ticket.save();
+        res.status(201).json({ message: 'Ticket generated successfully', ticketNumber: ticket.ticketNumber });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Error while generating ticket', error });
     }
 }

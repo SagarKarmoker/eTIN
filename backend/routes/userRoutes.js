@@ -5,6 +5,7 @@ const authMiddleware = require("../middlewares/authMiddleware");
 
 // POST
 router.post("/change-contact", authMiddleware, userController.changeContact);
+router.post("/generate-ticket", authMiddleware, userController.generateTicket);
 
 // GET
 router.get("/is-having-tin", authMiddleware, userController.isHavingTin);
