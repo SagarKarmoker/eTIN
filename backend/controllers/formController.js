@@ -59,6 +59,7 @@ exports.getMyTin = async (req, res) => {
     }
 }
 
+// TODO: Implement the updateTin function
 exports.updateTin = async (req, res) => {
     try {
         const { user } = req;
@@ -80,3 +81,12 @@ exports.updateTin = async (req, res) => {
         res.status(500).json({ message: 'Error getting or saving data', error });
     }
 };
+
+// TODO: Implement the getRequestStatus function (user tin update request)
+exports.getRequestStatus = async (req, res) => {
+    try {
+        
+    } catch (error) {
+        res.status(500).json({ message: 'Error fetching request status', error });
+    }
+}

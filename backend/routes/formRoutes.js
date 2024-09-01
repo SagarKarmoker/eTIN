@@ -3,14 +3,15 @@ const router = express.Router();
 const formController = require("../controllers/formController");
 const authMiddleware = require("../middlewares/authMiddleware");
 
-//router.post("/finalsubmission", authMiddleware, formController.finalSubmission);
+// POST
 router.post("/finalsubmission", formController.finalSubmission);
-// router.get("/user-tin-records", authMiddleware, formController.getTinRecords);
+
+// GET
 router.get("/user-tin-records", formController.getTinRecords);
-// my-tin route
 router.get("/my-tin", authMiddleware, formController.getMyTin);
+router.get("/get-request-status", authMiddleware, formController.getRequestStatus);
 
 //PUT
-router.put("/update-tin", authMiddleware, formController.updateTin);
+router.put("/update-tin", authMiddleware,    formController.updateTin);
 
 module.exports = router;
