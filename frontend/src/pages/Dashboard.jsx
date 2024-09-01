@@ -10,6 +10,7 @@ import TicketStatus from '../components/Ticket/TicketStatus'
 import ReIssueStatus from '../components/ReIssueStatus'
 import VatORBusniess from '../components/VatORBusniess'
 import ChangeStatus from '../components/Ticket/ChangeStatus'
+import UpdateTin from '../components/UpdateTin'
 
 const MainContent = ({ activeComponent }) => {
     switch (activeComponent) {
@@ -33,6 +34,8 @@ const MainContent = ({ activeComponent }) => {
             return <VatORBusniess />
         case 'change-status':
             return <ChangeStatus />
+        case 'update-tin':
+            return <UpdateTin />
         default:
             return <Welcome />
     }
