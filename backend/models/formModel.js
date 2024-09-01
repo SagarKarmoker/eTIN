@@ -14,6 +14,6 @@ const formSchema = new mongoose.Schema({
     },
     final_Preview: { type: Object, required: true },
     finalSubmission: { type: Boolean, default: false }
-});
+}, { timestamps: true });
 
 module.exports = mongoose.model("FormData", formSchema);

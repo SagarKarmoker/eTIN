@@ -58,3 +58,25 @@ exports.getMyTin = async (req, res) => {
         res.status(500).json({ message: "Error fetching TIN records", error });
     }
 }
+
+exports.updateTin = async (req, res) => {
+    try {
+        const { user } = req;
+        const {  } = req.body;
+
+        const getFormData = await FormData.findOne({
+            "nid": user.nid,
+        })
+
+        if (!getFormData) {
+            return res.status(404).json({ message: 'Data not found' });
+        }
+
+        
+        
+        await getFormData.save();
+        res.status(200).json({ message: 'TIN updated successfully' });
+    } catch (error) {
+        res.status(500).json({ message: 'Error getting or saving data', error });
+    }
+};

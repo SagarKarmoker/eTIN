@@ -10,4 +10,7 @@ router.get("/user-tin-records", formController.getTinRecords);
 // my-tin route
 router.get("/my-tin", authMiddleware, formController.getMyTin);
 
+//PUT
+router.put("/update-tin", authMiddleware, formController.updateTin);
+
 module.exports = router;
