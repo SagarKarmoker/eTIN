@@ -4,6 +4,7 @@ import Welcome from '../components/Welcome'
 import MyTin from '../components/MyTin'
 import Form from './Form'
 import ChangeContact from '../components/ChangeContact'
+import DownloadTin from '../components/DownloadTin'
 
 const MainContent = ({ activeComponent }) => {
     switch (activeComponent) {
@@ -15,6 +16,8 @@ const MainContent = ({ activeComponent }) => {
             return <Form />
         case 'change-contact':
             return <ChangeContact />
+        case 'view-tin':
+            return <DownloadTin />
         default:
             return <Welcome />
     }
