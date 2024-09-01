@@ -1,11 +1,10 @@
 import Registration from "../components/Registration/Registration";
 import BasicInformation from "../components/Basic_Information/Basic_Information";
 import FinalPreview from "../components/Final_Preview/Final_Preview";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
 import jsPDF from "jspdf";
-import Sidebar from "../components/Sidebar/Sidebar";
 
 const Form = () => {
   const [page, setPage] = useState(0);
@@ -17,6 +16,37 @@ const Form = () => {
     },
     finalSubmission: false,
   });
+
+  const [haveTin, setHaveTin] = useState(false);
+
+  useEffect(() => {
+    const checkHavingTin = async () => {
+      try {
+        const response = await axios.get("http://localhost:3001/api/user/is-having-tin", {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        });
+
+        console.log(response)
+        if (response.status === 200) {
+          setHaveTin(true);
+          Swal.fire({
+            title: "TIN Found!",
+            text: `You already have a TIN: ${response.data.tin}`,
+            icon: "info",
+            confirmButtonText: "OK",
+          }).then(() => {
+            window.location.href = "/dashboard";
+          });
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    checkHavingTin();
+  }, []);
 
   const generatePDF = () => {
     const { information, registration, taxesZone, taxesCircle } =
@@ -160,85 +190,118 @@ const Form = () => {
 
   return (
     <>
-      <div className="w-full h-full flex flex-col justify-center sm:px-6 lg:px-8">
-        <div className="sm:mx-auto sm:w-full sm:max-w-4xl mt-4">
-          <h1 className="text-center text-3xl font-bold tracking-tight text-gray-900">
-            {titles[page]}
-          </h1>
+      {haveTin ? (
+        <div className="w-full h-full flex flex-col justify-center sm:px-6 lg:px-8">
+          <div className="sm:mx-auto sm:w-full sm:max-w-4xl mt-4">
+            <h1 className="text-center text-3xl font-bold tracking-tight text-gray-900">
+              You already have a TIN
+            </h1>
+            <p>Please re-apply or update</p>
+          </div>
         </div>
-        <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-6xl flex flex-row gap-4">
-          {/* Sidebar on the left */}
-          {/* <div className="w-1/4 min-w-[250px]">
-            <Sidebar />
-          </div> */}
+      ) : (
+        <div className="w-full h-full flex flex-col justify-center sm:px-6 lg:px-8">
+          <div className="sm:mx-auto sm:w-full sm:max-w-4xl mt-4">
+            <h1 className="text-center text-3xl font-bold tracking-tight text-gray-900">
+              {titles[page]}
+            </h1>
+          </div>
+          <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-6xl flex flex-row gap-4">
+            {/* Sidebar on the left */}
+            {/* <div className="w-1/4 min-w-[250px]">
+                <Sidebar />
+              </div> */}
 
-          {/* Form on the right */}
-          <div className="w-3/4 min-w-[1000px]">
-            <div className="bg-white py-8 px-4 shadow-md sm:rounded-lg sm:px-10">
-              <ProgressBar />
-              <div>{PageDisplay()}</div>
-              <div className="flex flex-row gap-4 pt-8">
-                <button
-                  disabled={page === 0}
-                  onClick={() => {
-                    setPage((currPage) => currPage - 1);
-                  }}
-                  className={`flex items-center justify-center w-1/2 rounded-xl border border-transparent bg-blue-500 py-2 px-4 text-sm font-medium text-white shadow-md transition duration-300 ease-in-out transform ${
-                    page === 0
-                      ? "opacity-50 cursor-not-allowed"
-                      : "hover:bg-blue-600 hover:shadow-lg"
-                  } focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2`}
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-6 w-6 mr-2"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
+            {/* Form on the right */}
+            <div className="w-3/4 min-w-[1000px]">
+              <div className="bg-white py-8 px-4 shadow-md sm:rounded-lg sm:px-10">
+                <ProgressBar />
+                <div>{PageDisplay()}</div>
+                <div className="flex flex-row gap-4 pt-8">
+                  <button
+                    disabled={page === 0}
+                    onClick={() => {
+                      setPage((currPage) => currPage - 1);
+                    }}
+                    className={`flex items-center justify-center w-1/2 rounded-xl border border-transparent bg-blue-500 py-2 px-4 text-sm font-medium text-white shadow-md transition duration-300 ease-in-out transform ${
+                      page === 0
+                        ? "opacity-50 cursor-not-allowed"
+                        : "hover:bg-blue-600 hover:shadow-lg"
+                    } focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2`}
                   >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M7 16l-4-4m0 0l4-4m-4 4h18"
-                    />
-                  </svg>
-                  Prev
-                </button>
-                <button
-                  onClick={(e) => {
-                    if (validateFields()) {
-                      if (page === titles.length - 1) {
-                        FinalSubmission(e);
-                        console.log(data);
-                      } else {
-                        setPage((currPage) => currPage + 1);
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-6 w-6 mr-2"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M7 16l-4-4m0 0l4-4m-4 4h18"
+                      />
+                    </svg>
+                    Prev
+                  </button>
+                  <button
+                    onClick={(e) => {
+                      if (validateFields()) {
+                        if (page === titles.length - 1) {
+                          FinalSubmission(e);
+                          console.log(data);
+                        } else {
+                          setPage((currPage) => currPage + 1);
+                        }
                       }
-                    }
-                  }}
-                  className="flex items-center justify-center w-1/2 rounded-xl border border-transparent bg-blue-500 py-2 px-4 text-sm font-medium text-white shadow-md hover:bg-blue-600 hover:shadow-lg transition duration-300 ease-in-out transform focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-                >
-                  {page === titles.length - 1 ? "Submit" : "Next"}
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-6 w-6 ml-2"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
+                    }}
+                    className={`flex items-center justify-center w-1/2 rounded-xl border border-transparent bg-blue-500 py-2 px-4 text-sm font-medium text-white shadow-md transition duration-300 ease-in-out transform hover:bg-blue-600 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2`}
                   >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M17 8l4 4m0 0l-4 4m4-4H3"
-                    />
-                  </svg>
-                </button>
+                    {page === titles.length - 1 ? (
+                      <>
+                        Submit
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          className="h-6 w-6 ml-2"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="2"
+                            d="M5 13l4 4L19 7"
+                          />
+                        </svg>
+                      </>
+                    ) : (
+                      <>
+                        Next
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          className="h-6 w-6 ml-2"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="2"
+                            d="M9 5l7 7-7 7"
+                          />
+                        </svg>
+                      </>
+                    )}
+                  </button>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      )}
     </>
   );
 };
