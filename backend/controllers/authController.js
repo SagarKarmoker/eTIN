@@ -7,13 +7,10 @@ const SECRET_KEY = "super-secret-key";
 
 exports.login = async (req, res) => {
     try {
+        let token = '';
         const { phoneNumber, password } = req.body;
         const users = await Approved.findOne({ phoneNumber });
         const user = await User.findOne({ phoneNumber });
-
-        console.log(phoneNumber, password)
-        console.log(users)
-        console.log(users)
 
         if (users && users.blocked) {
             return res.status(403).json({ message: "User is blocked" });
@@ -27,7 +24,11 @@ exports.login = async (req, res) => {
             return res.status(401).json({ error: "Invalid credentials" });
         }
 
-        const token = jwt.sign({ userId: user._id, nid: users.nid }, SECRET_KEY, { expiresIn: "24hr" });
+        if(user.role === "Admin"){
+            token = jwt.sign({ userId: user._id }, SECRET_KEY, { expiresIn: "24hr" });
+        }else{
+            token = jwt.sign({ userId: user._id, nid: users.nid }, SECRET_KEY, { expiresIn: "24hr" });
+        }
         res.json({ message: "Login successful", role: user.role, token: token });
     } catch (error) {
         res.status(500).json({ error: "Error logging in" });

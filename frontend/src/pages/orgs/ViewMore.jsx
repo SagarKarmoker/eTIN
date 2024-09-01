@@ -52,7 +52,7 @@ function ViewMore() {
                         <h2 className="text-xl font-semibold text-gray-700 mb-2">Personal Information</h2>
                         <p><span className="font-medium">Tax Payers Name:</span> {userDetails.information.taxPayersName}</p>
                         <p><span className="font-medium">Gender:</span> {userDetails.information.gender}</p>
-                        <p><span className="font-medium">Number:</span> {userDetails.information.number}</p>
+                        <p><span className="font-medium">NID Number:</span> {userDetails.information.number}</p>
                         <p><span className="font-medium">Date of Birth:</span> {userDetails.information.dob}</p>
                         <p><span className="font-medium">Father's Name:</span> {userDetails.information.fathersName}</p>
                         <p><span className="font-medium">Mother's Name:</span> {userDetails.information.mothersName}</p>
