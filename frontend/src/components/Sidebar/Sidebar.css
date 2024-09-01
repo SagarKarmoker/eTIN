@@ -1,0 +1,10 @@
+.content-l {
+  width: 15rem;
+  padding: 1.2em;
+}
+
+.conten-r {
+  display: flex;
+  align-items: center;
+  margin-left: 18rem;
+}

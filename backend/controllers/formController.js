@@ -1,0 +1,60 @@
+const FormData = require("../models/formModel");
+const { generateTIN } = require("../utils/tinGenerator");
+
+exports.finalSubmission = async (req, res) => {
+    try {
+        const { registration, information, final_Preview, finalSubmission } = req.body;
+        const tin = generateTIN();
+
+        const formData = new FormData({
+            registration,
+            information: { ...information, tin },
+            final_Preview,
+            finalSubmission,
+        });
+
+        await formData.save();
+        res.status(200).json({ message: 'Data saved successfully', tin });
+    } catch (error) {
+        res.status(500).json({ message: 'Error saving data', error });
+    }
+};
+
+exports.getTinRecords = async (req, res) => {
+    try {
+        const records = await FormData.find({}, {
+            "information.tin": 1,
+            "information.taxPayersName": 1,
+            "information.number": 1,
+            "information.email": 1,
+            "information.permanentAddress": 1,
+            "_id": 0
+        });
+        
+        const tinRecords = records.map(record => ({
+            tin: record.information.tin,
+            taxPayersName: record.information.taxPayersName,
+            number: record.information.number,
+            email: record.information.email,
+            permanentAddress: record.information.permanentAddress
+        }));
+
+        res.status(200).json(tinRecords);
+    } catch (error) {
+        res.status(500).json({ message: "Error fetching TIN records", error });
+    }
+};
+
+exports.getMyTin = async (req, res) => {
+    try {
+        const { user } = req;
+        const findTin = await FormData.findOne(
+            { "nid": user.nid },
+        )
+
+        console.log(findTin)
+        res.status(200).json(findTin);
+    } catch (error) {
+        res.status(500).json({ message: "Error fetching TIN records", error });
+    }
+}
