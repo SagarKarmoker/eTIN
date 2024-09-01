@@ -115,3 +115,29 @@ exports.getTicketStatus = async (req, res) => {
         res.status(500).json({ message: 'Error while getting ticket status', error });
     }
 }
+
+exports.changeTicketStatus = async (req, res) => {
+    try {
+        const user = req.user;
+        const { ticketNumber } = req.body;
+        console.log(ticketNumber)
+
+        const ticket = await Ticket.findOne({
+            "ticketNumber": ticketNumber,
+            "nid": user.nid,
+        });
+
+        if (!ticket) {
+            return res.status(404).json({ message: 'Ticket not found' });
+        }
+
+        ticket.status = 'solved';
+        ticket.markModified('status');
+        await ticket.save();
+
+        res.status(200).json({ message: 'Ticket status updated successfully' });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Error while updating ticket status', error });
+    }
+}
