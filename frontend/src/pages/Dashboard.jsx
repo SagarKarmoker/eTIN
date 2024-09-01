@@ -24,15 +24,17 @@ function Dashboard() {
     const [activeComponent, setActiveComponent] = useState('welcome')
 
     return (
-        <main className='flex container mx-auto gap-5'>
-            {/* sidebar */}
-            <div className='w-1/5'>
-                <Sidebar setActiveComponent={setActiveComponent} />
-            </div>
-            {/* main content */}
-            <div className='flex-1 mx-auto w-full'>
-                <MainContent activeComponent={activeComponent} />
-            </div>
+        <main className='container mx-auto'>
+            <section className='flex space-x-12'>
+                {/* sidebar */}
+                <div className='w-1/5'>
+                    <Sidebar setActiveComponent={setActiveComponent} />
+                </div>
+                {/* main content */}
+                <div className='flex-1 mx-auto w-full'>
+                    <MainContent activeComponent={activeComponent} />
+                </div>
+            </section>
         </main>
     )
 }
