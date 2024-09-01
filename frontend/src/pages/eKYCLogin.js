@@ -42,6 +42,7 @@ function Login() {
       setPassword("");
       setUserCaptcha(""); // Reset user's captcha answer
       setCaptcha(Math.floor(Math.random() * 10) + 1); // Generate new captcha
+      localStorage.setItem("etinRole", response.data.role);
       localStorage.setItem("token", token);
       navigate("/dashboard");
       window.location.reload();

@@ -7,9 +7,13 @@ import Login from "./pages/eKYCLogin";
 import ThirdParty from "./pages/ThirdParty";
 import About from "./pages/About";
 import Dashboard from "./pages/Dashboard";
+import OrgDashboard from "./pages/orgs/OrgDashboard";
+import Admin from "./pages/admin/Admin";
 
 function App() {
   const isUserSignedIn = !!localStorage.getItem("token");
+  const role = localStorage.getItem("etinRole");
+
   return (
     <div className="App">
       <Navbar />
@@ -18,8 +22,14 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/thirdParty" element={<ThirdParty />} />
         <Route path="/about" element={<About />} />
-        {isUserSignedIn && <Route path="/form" element={<Form />} />}
-        {isUserSignedIn && <Route path="/dashboard" element={<Dashboard />} />}
+        {isUserSignedIn && role == 'Taxpayer' && <Route path="/form" element={<Form />} />}
+        {isUserSignedIn && role == 'Taxpayer' && <Route path="/dashboard" element={<Dashboard />} />}
+
+        {/* Admin */}
+        {isUserSignedIn && role == 'Admin' && <Route path="/admin" element={<Admin />} />}
+
+        {/* ThirdParty */}
+        {isUserSignedIn && role == 'Organization' && <Route path="/organization" element={<OrgDashboard />} />}
       </Routes>
     </div>
   );
