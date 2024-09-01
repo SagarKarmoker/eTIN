@@ -96,3 +96,22 @@ exports.generateTicket = async (req, res) => {
         res.status(500).json({ message: 'Error while generating ticket', error });
     }
 }
+
+exports.getTicketStatus = async (req, res) => {
+    try {
+        const user = req.user;
+
+        const ticket = await Ticket.find({
+            "nid": user.nid,
+        });
+
+        if (!ticket) {
+            return res.status(404).json({ message: 'Ticket not found' });
+        }
+
+        res.status(200).json({ message: 'Ticket status', ticket });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Error while getting ticket status', error });
+    }
+}

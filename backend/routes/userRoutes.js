@@ -9,5 +9,6 @@ router.post("/generate-ticket", authMiddleware, userController.generateTicket);
 
 // GET
 router.get("/is-having-tin", authMiddleware, userController.isHavingTin);
+router.get("/get-ticket-status", authMiddleware, userController.getTicketStatus);
 
 module.exports = router;
