@@ -190,7 +190,7 @@ function Navbar() {
             <li>
               <Link
                 className="text-sm text-gray-400 hover:text-gray-500"
-                to="#"
+                to="/contactus"
               >
                 Contact
               </Link>
@@ -298,7 +298,7 @@ function Navbar() {
                 <li className="mb-1">
                   <Link
                     className="block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600 rounded"
-                    to="#"
+                    to="/contactus"
                   >
                     Contact
                   </Link>
