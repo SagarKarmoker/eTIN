@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 function Navbar() {
   const isUserSignedIn = !!localStorage.getItem("token");
   const navigate = useNavigate();
+  const role = localStorage.getItem("etinRole");
 
   const handleSignOut = () => {
     localStorage.removeItem("token");
@@ -55,9 +56,23 @@ function Navbar() {
             {isUserSignedIn && (
               <>
                 <li>
-                  <Link className="text-sm font-bold" to="/dashboard">
-                    Dashboard
-                  </Link>
+                  {
+                    role === 'Admin' && (<Link className="text-sm font-bold" to="/admin">
+                      Dashboard
+                    </Link>)
+                  }
+
+{
+                    role === 'Organization' && (<Link className="text-sm font-bold" to="/organization">
+                      Dashboard
+                    </Link>)
+                  }
+
+                  {
+                    role === 'Taxpayer' && (<Link className="text-sm font-bold" to="/dashboard">
+                      Dashboard
+                    </Link>)
+                  }
                 </li>
                 <li className="text-gray-300">
                   <svg

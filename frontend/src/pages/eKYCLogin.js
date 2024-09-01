@@ -44,7 +44,17 @@ function Login() {
       setCaptcha(Math.floor(Math.random() * 10) + 1); // Generate new captcha
       localStorage.setItem("etinRole", response.data.role);
       localStorage.setItem("token", token);
-      navigate("/dashboard");
+      
+      if(response.data.role === "Taxpayer") {
+        navigate("/dashboard");
+      }
+      else if(response.data.role === "Admin") {
+        navigate("/admin");
+      }
+      else if(response.data.role === "Organization") {
+        navigate("/organization");
+      }
+
       window.location.reload();
     } catch (error) {
       console.log("Login Error", error);
