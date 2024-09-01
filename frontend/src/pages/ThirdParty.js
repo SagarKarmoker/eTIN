@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 const UserTINTable = () => {
   const [records, setRecords] = useState([]);
@@ -108,7 +109,7 @@ const UserTINTable = () => {
                           {index + 1}
                         </th>
                         <td className="px-4 py-3 w-64 text-left break-words">
-                          {record.tin}
+                          <Link to={`/details/${record.tin}`} className='hover:underline text-blue-600 font-bold'>{record.tin}</Link>
                         </td>
                         <td className="px-4 py-3 w-48 text-left bg-gray-100 break-words">
                           {record.taxPayersName}

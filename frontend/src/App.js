@@ -9,6 +9,7 @@ import About from "./pages/About";
 import Dashboard from "./pages/Dashboard";
 import OrgDashboard from "./pages/orgs/OrgDashboard";
 import Admin from "./pages/admin/Admin";
+import ViewMore from "./pages/orgs/ViewMore";
 
 function App() {
   const isUserSignedIn = !!localStorage.getItem("token");
@@ -30,6 +31,7 @@ function App() {
         {/* ThirdParty */}
         {isUserSignedIn && role == 'Organization' && <Route path="/organization" element={<OrgDashboard />} />}
         {isUserSignedIn && role == 'Organization' &&  <Route path="/thirdParty" element={<ThirdParty />} />}
+        {isUserSignedIn && role == 'Organization' &&  <Route path="/details/:tin" element={<ViewMore />} />}
       </Routes>
     </div>
   );

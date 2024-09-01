@@ -10,8 +10,14 @@ router.post("/finalsubmission", formController.finalSubmission);
 router.get("/user-tin-records", formController.getTinRecords);
 router.get("/my-tin", authMiddleware, formController.getMyTin);
 router.get("/get-request-status", authMiddleware, formController.getRequestStatus);
+router.get(
+    "/get-user-tin-details/:tin",
+    authMiddleware,
+    formController.getUserTinDetails
+);
+
 
 //PUT
-router.put("/update-tin", authMiddleware,    formController.updateTin);
+router.put("/update-tin", authMiddleware, formController.updateTin);
 
 module.exports = router;

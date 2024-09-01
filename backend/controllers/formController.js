@@ -30,7 +30,7 @@ exports.getTinRecords = async (req, res) => {
             "information.permanentAddress": 1,
             "_id": 0
         });
-        
+
         const tinRecords = records.map(record => ({
             tin: record.information.tin,
             taxPayersName: record.information.taxPayersName,
@@ -59,11 +59,30 @@ exports.getMyTin = async (req, res) => {
     }
 }
 
+exports.getUserTinDetails = async (req, res) => {
+    try {
+        const { tin } = req.params;
+
+        const findTin = await FormData.findOne({
+            "information.tin": tin,
+        });
+
+        if (!findTin) {
+            return res.status(404).json({ message: 'TIN not found' });
+        }
+
+        res.status(200).json(findTin);
+
+    } catch (error) {
+        res.status(500).json({ message: 'Error fetching user TIN details', error });
+    }
+}
+
 // TODO: Implement the updateTin function
 exports.updateTin = async (req, res) => {
     try {
         const { user } = req;
-        const {  } = req.body;
+        const { } = req.body;
 
         const getFormData = await FormData.findOne({
             "nid": user.nid,
@@ -73,8 +92,8 @@ exports.updateTin = async (req, res) => {
             return res.status(404).json({ message: 'Data not found' });
         }
 
-        
-        
+
+
         await getFormData.save();
         res.status(200).json({ message: 'TIN updated successfully' });
     } catch (error) {
@@ -85,7 +104,7 @@ exports.updateTin = async (req, res) => {
 // TODO: Implement the getRequestStatus function (user tin update request)
 exports.getRequestStatus = async (req, res) => {
     try {
-        
+
     } catch (error) {
         res.status(500).json({ message: 'Error fetching request status', error });
     }
