@@ -211,7 +211,7 @@ const Sidebar = ({ setActiveComponent }) => {
             <span>Ticket Status</span>
           </Link>
         </li>
-        <li>
+        <li onClick={() => setActiveComponent('reissue-status')}>
           <Link
             to=""
             className="flex items-center space-x-3 text-gray-700 p-2 rounded-md font-medium hover:bg-gray-200 focus:bg-gray-200 focus:shadow-outline"
@@ -232,58 +232,10 @@ const Sidebar = ({ setActiveComponent }) => {
                 />
               </svg>
             </span>
-            <span>Revalidate</span>
+            <span>Reissue Status</span>
           </Link>
         </li>
-        <li>
-          <Link
-            to="#"
-            className="flex items-center space-x-3 text-gray-700 p-2 rounded-md font-medium hover:bg-gray-200 focus:bg-gray-200 focus:shadow-outline"
-          >
-            <span className="text-gray-600">
-              <svg
-                className="h-5"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"
-                ></path>
-              </svg>
-            </span>
-            <span>Ticket Status</span>
-          </Link>
-        </li>
-        <li>
-          <Link
-            to="#"
-            className="flex items-center space-x-3 text-gray-700 p-2 rounded-md font-medium hover:bg-gray-200 focus:bg-gray-200 focus:shadow-outline"
-          >
-            <span className="text-gray-600">
-              <svg
-                className="h-5"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
-                />
-              </svg>
-            </span>
-            <span>Regenerate Ticket</span>
-          </Link>
-        </li>
-        <li>
+        <li onClick={() => setActiveComponent('vat-or-business')}>
           <Link
             to="#"
             className="flex items-center space-x-3 text-gray-700 p-2 rounded-md font-medium hover:bg-gray-200 focus:bg-gray-200 focus:shadow-outline"
@@ -307,7 +259,7 @@ const Sidebar = ({ setActiveComponent }) => {
             <span>Vat/Business Info</span>
           </Link>
         </li>
-        <li>
+        <li onClick={() => setActiveComponent('change-status')}>
           <Link
             to="#"
             className="flex items-center space-x-3 text-gray-700 p-2 rounded-md font-medium hover:bg-gray-200 focus:bg-gray-200 focus:shadow-outline"

@@ -7,6 +7,9 @@ import ChangeContact from '../components/ChangeContact'
 import DownloadTin from '../components/DownloadTin'
 import GenerateTicket from '../components/Ticket/GenerateTicket'
 import TicketStatus from '../components/Ticket/TicketStatus'
+import ReIssueStatus from '../components/ReIssueStatus'
+import VatORBusniess from '../components/VatORBusniess'
+import ChangeStatus from '../components/Ticket/ChangeStatus'
 
 const MainContent = ({ activeComponent }) => {
     switch (activeComponent) {
@@ -24,6 +27,12 @@ const MainContent = ({ activeComponent }) => {
             return <GenerateTicket />
         case 'ticket-status':
             return <TicketStatus />
+        case 'reissue-status':
+            return <ReIssueStatus />
+        case 'vat-or-business':
+            return <VatORBusniess />
+        case 'change-status':
+            return <ChangeStatus />
         default:
             return <Welcome />
     }
