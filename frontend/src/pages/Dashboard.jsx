@@ -6,6 +6,7 @@ import Form from './Form'
 import ChangeContact from '../components/ChangeContact'
 import DownloadTin from '../components/DownloadTin'
 import GenerateTicket from '../components/Ticket/GenerateTicket'
+import TicketStatus from '../components/Ticket/TicketStatus'
 
 const MainContent = ({ activeComponent }) => {
     switch (activeComponent) {
@@ -21,6 +22,8 @@ const MainContent = ({ activeComponent }) => {
             return <DownloadTin />
         case 'generate-ticket':
             return <GenerateTicket />
+        case 'ticket-status':
+            return <TicketStatus />
         default:
             return <Welcome />
     }
