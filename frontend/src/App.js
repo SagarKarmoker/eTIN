@@ -20,7 +20,6 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/thirdParty" element={<ThirdParty />} />
         <Route path="/about" element={<About />} />
         {isUserSignedIn && role == 'Taxpayer' && <Route path="/form" element={<Form />} />}
         {isUserSignedIn && role == 'Taxpayer' && <Route path="/dashboard" element={<Dashboard />} />}
@@ -30,6 +29,7 @@ function App() {
 
         {/* ThirdParty */}
         {isUserSignedIn && role == 'Organization' && <Route path="/organization" element={<OrgDashboard />} />}
+        {isUserSignedIn && role == 'Organization' &&  <Route path="/thirdParty" element={<ThirdParty />} />}
       </Routes>
     </div>
   );

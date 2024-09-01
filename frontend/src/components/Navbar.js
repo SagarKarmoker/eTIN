@@ -8,6 +8,7 @@ function Navbar() {
 
   const handleSignOut = () => {
     localStorage.removeItem("token");
+    localStorage.removeItem("etinRole");
     navigate("/login");
   };
 
@@ -62,7 +63,7 @@ function Navbar() {
                     </Link>)
                   }
 
-{
+                  {
                     role === 'Organization' && (<Link className="text-sm font-bold" to="/organization">
                       Dashboard
                     </Link>)
@@ -323,7 +324,7 @@ function Navbar() {
                 )}
               </div>
               <p className="my-4 text-xs text-center text-gray-400">
-                <span>Copyright © 2021</span>
+                <span>Copyright © 2024</span>
               </p>
             </div>
           </nav>
