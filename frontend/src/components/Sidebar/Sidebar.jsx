@@ -333,7 +333,8 @@ const Sidebar = ({ setActiveComponent }) => {
         </li>
         <li>
           <Link
-            to="#"
+            to="https://google.com"
+            target="_blank"
             className="flex items-center space-x-3 text-gray-700 p-2 rounded-md font-medium hover:bg-gray-200 focus:bg-gray-200 focus:shadow-outline"
           >
             <span className="text-gray-600">
@@ -352,7 +353,7 @@ const Sidebar = ({ setActiveComponent }) => {
                 />
               </svg>
             </span>
-            <span>Jurisdiction Finder</span>
+            <span>Goto e-Return</span>
           </Link>
         </li>
       </ul>
