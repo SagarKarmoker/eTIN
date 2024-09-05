@@ -24,4 +24,12 @@ app.use("/api/form", formRoutes);
 app.use("/api/kyc", kycRoutes);
 app.use("/api/user", userRoutes)
 
+
+// Wallet Routers
+
+
+// DB Routers
+
+
+
 module.exports = app;
