@@ -7,7 +7,11 @@ const SECRET_KEY = "super-secret-key";
 
 exports.getBankDetails = async (req, res) => {
     try {
-        const response = await Bank.find();
+        const { user } = req; // token -> user nid
+
+        const response = await Bank.findOne({
+            nid: user.nid,
+        });
         res.status(200).json(response);
     } catch (error) {
         res.status(500).json({ error: "Error while retriving data" });
@@ -16,7 +20,11 @@ exports.getBankDetails = async (req, res) => {
 
 exports.getRebateDetails = async (req, res) => {
     try {
-        const response = await Rebate.find();
+        const { user } = req;
+
+        const response = await Rebate.findOne({
+            "personal_info.nid": user.nid,
+        });
         res.status(200).json(response);
     } catch (error) {
         res.status(500).json({ error: "Error while retriving data" });

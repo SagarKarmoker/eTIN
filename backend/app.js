@@ -8,7 +8,7 @@ const formRoutes = require("./routes/formRoutes");
 const kycRoutes = require("./routes/kycRoutes");
 const userRoutes = require("./routes/userRoutes");
 const walletRoutes = require("./routes/walletRoutes");
-const bankRoutes = require("./routes/bankRoutes");
+const assetsRoutes = require("./routes/assetsRoutes");
 
 const app = express();
 
@@ -31,7 +31,7 @@ app.use("/api/user", userRoutes)
 app.use('/api/wallet', walletRoutes);
 
 // DB Routers (assets details)
-app.use('/api/personal', bankRoutes);
+app.use('/api/personal', assetsRoutes);
 
 
 module.exports = app;
