@@ -12,9 +12,10 @@ const transactionSchema = new mongoose.Schema({
 // Define the schema for Bank Details
 const bankDetailsSchema = new mongoose.Schema({
     account_number: { type: String, required: true },
-    account_type: { type: String, enum: ['Savings', 'Checking'], required: true },
+    account_type: { type: String, enum: ['Savings', 'Checking', 'Salary'], required: true },
     balance: { type: Number, required: true },
     currency: { type: String, required: true },
+    monthly_salary_amount: { type: Number, required: true },
     transactions: [transactionSchema]
 });
 
@@ -34,6 +35,7 @@ const bankSchema = new mongoose.Schema({
         first_name: { type: String, required: true },
         last_name: { type: String, required: true }
     },
+    gender: {type: String, required: true},
     dob: { type: String, required: true }, // If using Date, modify the format
     address: addressSchema,
     contact_info: {
