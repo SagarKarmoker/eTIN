@@ -15,6 +15,7 @@ connectDB();
 
 // Middleware to parse JSON
 app.use(express.json());
+app.use(require('morgan')('dev'));  // Logger middleware
 app.use(cors());
 
 // Routes
