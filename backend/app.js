@@ -7,6 +7,7 @@ const authRoutes = require("./routes/authRoutes");
 const formRoutes = require("./routes/formRoutes");
 const kycRoutes = require("./routes/kycRoutes");
 const userRoutes = require("./routes/userRoutes");
+const walletRoutes = require("./routes/walletRoutes");
 
 const app = express();
 
@@ -26,7 +27,7 @@ app.use("/api/user", userRoutes)
 
 
 // Wallet Routers
-
+app.use('/api/wallet', walletRoutes);
 
 // DB Routers
 
