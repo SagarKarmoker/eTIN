@@ -56,7 +56,7 @@ export default function About() {
         </div>
       </main>
 
-      {/* "Our Mission" Section with a different background color */}
+      {/* "Our Mission" Section with a different background color
       <div className="bg-gray-100 py-16">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-4xl font-extrabold mb-8 text-gray-800">Our Mission</h2>
@@ -64,7 +64,7 @@ export default function About() {
             To provide cutting-edge, secure, and user-friendly tax services that empower individuals and businesses in Bangladesh to manage their tax obligations with confidence and ease.
           </p>
         </div>
-      </div>
+      </div> */}
 
       {/* Footer */}
       <footer className="bg-gray-800 text-white py-8">
