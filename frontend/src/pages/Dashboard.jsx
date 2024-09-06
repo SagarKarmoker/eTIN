@@ -1,66 +1,68 @@
-import { useState } from 'react'
-import Sidebar from '../components/Sidebar/Sidebar'
-import Welcome from '../components/Welcome'
-import MyTin from '../components/MyTin'
-import Form from './Form'
-import ChangeContact from '../components/ChangeContact'
-import DownloadTin from '../components/DownloadTin'
-import GenerateTicket from '../components/Ticket/GenerateTicket'
-import TicketStatus from '../components/Ticket/TicketStatus'
-import ReIssueStatus from '../components/ReIssueStatus'
-import VatORBusniess from '../components/VatORBusniess'
-import ChangeStatus from '../components/Ticket/ChangeStatus'
-import UpdateTin from '../components/UpdateTin'
-import RequestStatus from '../components/RequestStatus'
+import { useState } from 'react';
+import Sidebar from '../components/Sidebar/Sidebar';
+import Welcome from '../components/Welcome';
+import MyTin from '../components/MyTin';
+import Form from './Form';
+import ChangeContact from '../components/ChangeContact';
+import DownloadTin from '../components/DownloadTin';
+import GenerateTicket from '../components/Ticket/GenerateTicket';
+import TicketStatus from '../components/Ticket/TicketStatus';
+import ReIssueStatus from '../components/ReIssueStatus';
+import VatORBusniess from '../components/VatORBusniess';
+import ChangeStatus from '../components/Ticket/ChangeStatus';
+import UpdateTin from '../components/UpdateTin';
+import RequestStatus from '../components/RequestStatus';
 
 const MainContent = ({ activeComponent }) => {
     switch (activeComponent) {
         case 'welcome':
-            return <Welcome />
+            return <Welcome />;
         case 'my-tin':
-            return <MyTin />
+            return <MyTin />;
         case 'form':
-            return <Form />
+            return <Form />;
         case 'change-contact':
-            return <ChangeContact />
+            return <ChangeContact />;
         case 'view-tin':
-            return <DownloadTin />
+            return <DownloadTin />;
         case 'generate-ticket':
-            return <GenerateTicket />
+            return <GenerateTicket />;
         case 'ticket-status':
-            return <TicketStatus />
+            return <TicketStatus />;
         case 'reissue-status':
-            return <ReIssueStatus />
+            return <ReIssueStatus />;
         case 'vat-or-business':
-            return <VatORBusniess />
+            return <VatORBusniess />;
         case 'change-status':
-            return <ChangeStatus />
+            return <ChangeStatus />;
         case 'update-tin':
-            return <UpdateTin />
+            return <UpdateTin />;
         case 'request-status':
-            return <RequestStatus />
+            return <RequestStatus />;
         default:
-            return <Welcome />
+            return <Welcome />;
     }
 };
 
 function Dashboard() {
-    const [activeComponent, setActiveComponent] = useState('welcome')
+    const [activeComponent, setActiveComponent] = useState('welcome');
 
     return (
-        <main className='container mx-auto'>
-            <section className='flex space-x-12'>
-                {/* sidebar */}
-                <div className='w-1/5'>
-                    <Sidebar setActiveComponent={setActiveComponent} />
-                </div>
-                {/* main content */}
-                <div className='flex-1 mx-auto w-full'>
-                    <MainContent activeComponent={activeComponent} />
-                </div>
-            </section>
-        </main>
-    )
+        <div className='min-h-screen bg-gray-50'>
+            <main className='container mx-auto'>
+                <section className='flex'>
+                    {/* sidebar */}
+                    <div className='fixed w-1/5 top-0 left-0 px-20 h-screen mt-20 border-r border-gray-200'>
+                        <Sidebar setActiveComponent={setActiveComponent} />
+                    </div>
+                    {/* main content */}
+                    <div className='ml-[20%] flex-1 p-6'>
+                        <MainContent activeComponent={activeComponent} />
+                    </div>
+                </section>
+            </main>
+        </div>
+    );
 }
 
-export default Dashboard
+export default Dashboard;

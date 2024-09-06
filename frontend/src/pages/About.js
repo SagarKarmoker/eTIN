@@ -1,6 +1,6 @@
 import { FileText, Lock, Database } from "lucide-react";
 import { FiPhone, FiMail, FiMapPin } from 'react-icons/fi';
-import backgroundImage from '../img/BG1.png';
+import backgroundImage from '../img/BG3.png';
 
 export default function About() {
   return (
