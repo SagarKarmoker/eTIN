@@ -2,7 +2,7 @@ import React from 'react'
 
 function ReIssueStatus() {
   return (
-    <div>
+    <div className='mt-20'>
         <h1>Re-Issue Status</h1>
         <p>Coming soon</p>
     </div>

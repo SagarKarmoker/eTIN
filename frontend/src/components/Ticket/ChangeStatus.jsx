@@ -45,7 +45,7 @@ function ChangeStatus() {
 
 
     return (
-        <div className="min-h-screen  p-6">
+        <div className="min-h-screen mt-20">
             <div className="container border-2 mx-auto bg-white p-6 rounded-lg shadow-md">
                 <h1 className="text-2xl font-bold text-gray-800 mb-6">Change Ticket Status</h1>
                 {tickets.length === 0 ? (
@@ -53,7 +53,7 @@ function ChangeStatus() {
                 ) : (
                     <table className="min-w-full bg-white border border-gray-200 rounded-lg">
                         <thead>
-                            <tr className="bg-gray-200 text-left">
+                            <tr className="bg-blue-500 text-white text-left">
                                 <th className="px-6 py-3 border-b border-gray-300">Ticket Number</th>
                                 <th className="px-6 py-3 border-b border-gray-300">Name</th>
                                 <th className="px-6 py-3 border-b border-gray-300">NID</th>
@@ -79,8 +79,8 @@ function ChangeStatus() {
                                     <td className="px-6 py-4 border-b border-gray-200">{new Date(ticket.createdAt).toLocaleString()}</td>
                                     <td className="px-6 py-4 border-b border-gray-200">{new Date(ticket.updatedAt).toLocaleString()}</td>
                                     <td className="px-6 py-4 border-b border-gray-200">
-                                        <button className='bg-green-600 p-3 rounded-lg font-bold' onClick={() => markAsSolved(ticket.ticketNumber)}>
-                                            Mark as Solved
+                                        <button className='bg-green-600 text-white px-4 py-2 rounded-lg font-bold' onClick={() => markAsSolved(ticket.ticketNumber)}>
+                                            Solved
                                         </button>
                                     </td>
                                 </tr>

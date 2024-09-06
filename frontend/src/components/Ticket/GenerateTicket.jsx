@@ -48,7 +48,7 @@ function GenerateTicket() {
     };
 
     return (
-        <div className="mt-10 flex items-center justify-center mb-10">
+        <div className="mt-20 flex items-center justify-center mb-10">
             <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-lg border-2">
                 <h2 className="text-2xl font-bold mb-6 text-gray-800">Submit a Request</h2>
                 <form onSubmit={handleSubmit}>
