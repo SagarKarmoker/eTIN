@@ -8,6 +8,10 @@ const authMiddleware = require("../middlewares/authMiddleware");
 
 // POST
 router.post("/submit-singlepage-return", authMiddleware, eReturnController.singlePageReturn);
+router.post("/is-return-submitted", authMiddleware, eReturnController.isReturnSubmitted);
+
+//optional
+router.post("/agree-singlepage-return", authMiddleware, eReturnController.agreeSinglePageReturn);
 
 
 module.exports = router;

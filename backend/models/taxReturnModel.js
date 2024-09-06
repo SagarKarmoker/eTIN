@@ -1,5 +1,47 @@
 const mongoose = require('mongoose');
 
+const agreeSchema = new mongoose.Schema({
+    incomeLimit: {
+        type: Boolean,
+        required: true,
+        default: false,
+    },
+    assetLimit: {
+        type: Boolean,
+        required: true,
+        default: false,
+    },
+    noVehicle: {
+        type: Boolean,
+        required: true,
+        default: false,
+    },
+    noProperty: {
+        type: Boolean,
+        required: true,
+        default: false,
+    },
+    noForeignAssets: {
+        type: Boolean,
+        required: true,
+        default: false,
+    },
+    noShareholder: {
+        type: Boolean,
+        required: true,
+        default: false,
+    },
+    mainSourceOfIncome: {
+        type: String,
+        enum: ['Service', 'Business'], // Only allows 'Service' or 'Business'
+        required: true,
+    },
+    createdAt: {
+        type: Date,
+        default: Date.now,
+    }
+});
+
 const taxReturnSchema = new mongoose.Schema({
     fullName: { type: String, required: true },
     father_name: { type: String, required: true },
@@ -20,6 +62,8 @@ const taxReturnSchema = new mongoose.Schema({
     tax_paid_with_this_return: { type: Number, default: 0 },  // Defaulting to 0 if not provided
     lifestyle_expenses: { type: String, required: true },
     isSinglePageReturn: { type: Boolean, required: true },
+    isAgreed: { type: Boolean, default: false },
+    agreeData: {type: agreeSchema, required: true},
 }, { timestamps: true });
 
 module.exports = mongoose.model('TaxReturn', taxReturnSchema);
