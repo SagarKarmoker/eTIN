@@ -40,4 +40,8 @@ app.use('/api/personal', assetsRoutes);
 app.use('/api/e-return', eReturnRoutes)
 
 
+// Admin Routers
+app.use('/api/admin', require('./routes/adminRoutes'));
+
+
 module.exports = app;
