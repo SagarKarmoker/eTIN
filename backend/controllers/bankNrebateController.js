@@ -1,5 +1,9 @@
 const Bank = require("../models/bankModel");
 const Rebate = require("../models/rebateModel");
+const User = require("../models/userModel");
+const People = require("../models/peopleModel")
+const Approved = require("../models/approvedModel");
+const FormData = require("../models/formModel");
 
 exports.getBankDetails = async (req, res) => {
     try {
@@ -119,6 +123,16 @@ exports.getCalculatedTaxAmountForSinglePageReturn = async (req, res) => {
 
         let totalRebateAmount = lowest(rebate1, lowest(rebate2, rebate3));
 
+        // getUserDetails
+        const userDetails = await findUserDetails(user.nid);
+
+        userDetails.total_income = totalSalary;
+        userDetails.total_assets = totalRebate;
+        userDetails.tax_rebate = totalRebateAmount;
+        userDetails.tax_deducted_collected_at_source = totalSalary / 12 * 0.1; // 10% of total salary
+        userDetails.chargable_tax = initialTaxAmount - (totalRebateAmount + userDetails.tax_deducted_collected_at_source) < 0 ? 5000 : initialTaxAmount - (totalRebateAmount + userDetails.tax_deducted_collected_at_source);
+        userDetails.lifesyle_expenses = 0; // user defined
+
         res.status(200).json({
             message: "Single page tax return for you", result: {
                 "rebate1": rebate1,
@@ -130,10 +144,65 @@ exports.getCalculatedTaxAmountForSinglePageReturn = async (req, res) => {
                 "initialTaxAmount": initialTaxAmount,
                 "remainingTaxAmount": initialTaxAmount - totalRebateAmount,
                 "actualTaxAmount": initialTaxAmount - totalRebateAmount < 0 ? 5000 : initialTaxAmount - totalRebateAmount
-            }
+            },
+            userDetails
         });
     } catch (error) {
         res.status(500).json({ error: "Error while retriving data", error });
+    }
+}
+
+const findUserDetails = async (nid) => {
+    try {
+
+        const userDetails = {
+            fullName: '',
+            father_name: '',
+            nid,
+            tin: '',
+            circle: '',
+            tax_zone: '',
+            assessment_year: '2023-2024',
+            residential_status: '', //user input
+            address_of_contact: '',
+            mobile_number: '',
+            source_of_income: '',
+            total_assets: '',
+            total_income: '',
+            chargable_tax: '',
+            tax_rebate: '',
+            tax_deducted_collected_at_source: '',
+            tax_paid_with_this_return: '',
+            lifesyle_expenses: '',
+        };
+
+        const name_n_father_name = await People.findOne({
+            nidNumber: nid,
+        });
+        console.log(name_n_father_name)
+
+        userDetails.fullName = name_n_father_name.fullNameEnglish;
+        userDetails.father_name = name_n_father_name.father;
+
+        const approved_kyc = await Approved.find({
+            nid: nid,
+        });
+
+        userDetails.mobile_number = approved_kyc[0].phoneNumber;
+
+        const tin = await FormData.find({
+            nid: nid,
+        });
+
+        userDetails.tin = tin[0].information.tin;
+        userDetails.circle = tin[0].final_Preview.taxesCircle;
+        userDetails.tax_zone = tin[0].final_Preview.taxesZone;
+        userDetails.source_of_income = tin[0].final_Preview.registration.mainSourceOfIncome;
+        userDetails.address_of_contact = tin[0].information.permanentAddress;
+
+        return userDetails;
+    } catch (error) {
+        console.log(error)
     }
 }
 
