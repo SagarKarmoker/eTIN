@@ -1,9 +1,23 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { 
+  FaHome, 
+  FaFileAlt, 
+  FaIdCard, 
+  FaPhoneAlt, 
+  FaCertificate, 
+  FaTicketAlt, 
+  FaSearch, 
+  FaSyncAlt, 
+  FaInfoCircle, 
+  FaEdit, 
+  FaFileSignature 
+} from 'react-icons/fa';
 import "./Sidebar.css";
 
 const Sidebar = ({ setActiveComponent }) => {
   const [information, setInformation] = useState({});
+  
   useEffect(() => {
     const storedData = localStorage.getItem("informationData");
     if (storedData) {
@@ -20,24 +34,11 @@ const Sidebar = ({ setActiveComponent }) => {
           alt="Taxpayer"
         />
         <div>
-          <h4 className="font-semibold text-lg text-gray-700 capitalize font-poppins tracking-wide ">
+          <h4 className="font-semibold text-lg text-gray-700 capitalize font-poppins tracking-wide">
             {information.taxPayersName}
           </h4>
           <span className="text-sm tracking-wide flex items-center space-x-1">
-            <svg
-              className="h-4 text-green-500"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
-              />
-            </svg>
+            <FaCertificate className="h-4 text-green-500" />
             <span className="text-gray-600">Verified</span>
           </span>
         </div>
@@ -46,288 +47,108 @@ const Sidebar = ({ setActiveComponent }) => {
         <li onClick={() => setActiveComponent('welcome')}>
           <Link
             to="#"
-            className="flex items-center space-x-3 text-gray-700 p-2 rounded-md font-medium hover:bg-gray-200 focus:bg-gray-200 focus:shadow-outline"
+            className="flex items-center space-x-3 text-gray-700 p-2 rounded-md font-medium hover:bg-blue-500 hover:text-white focus:text-white focus:bg-blue-500 focus:shadow-outline"
           >
-            <span className="text-gray-600">
-              <svg
-                className="h-5"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"
-                ></path>
-              </svg>
-            </span>
+            <FaHome className=" h-5" />
             <button>Dashboard</button>
           </Link>
         </li>
         <li onClick={() => setActiveComponent('form')}>
           <Link
             to="#"
-            className="flex items-center space-x-3 text-gray-700 p-2 rounded-md font-medium hover:bg-gray-200 focus:bg-gray-200 focus:shadow-outline"
+            className="flex items-center space-x-3 text-gray-700 p-2 rounded-md font-medium hover:bg-blue-500 hover:text-white focus:text-white focus:bg-blue-500 focus:shadow-outline"
           >
-            <span className="text-gray-600">
-              <svg
-                className="h-5"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"
-                ></path>
-              </svg>
-            </span>
+            <FaFileAlt className=" h-5" />
             <button>TIN Application</button>
           </Link>
         </li>
         <li onClick={() => setActiveComponent('my-tin')}>
           <Link
             to="#"
-            className="flex items-center space-x-3 text-gray-700 p-2 rounded-md font-medium hover:bg-gray-200 focus:bg-gray-200 focus:shadow-outline"
+            className="flex items-center space-x-3 text-gray-700 p-2 rounded-md font-medium hover:bg-blue-500 hover:text-white focus:text-white focus:bg-blue-500 focus:shadow-outline"
           >
-            <span className="text-gray-600">
-              <svg
-                className="h-5"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"
-                ></path>
-              </svg>
-            </span>
+            <FaIdCard className=" h-5" />
             <button>My Tin Information</button>
           </Link>
         </li>
         <li onClick={() => setActiveComponent('change-contact')}>
           <Link
             to="#"
-            className="flex items-center space-x-3 text-gray-700 p-2 rounded-md font-medium hover:bg-gray-200 focus:bg-gray-200 focus:shadow-outline"
+            className="flex items-center space-x-3 text-gray-700 p-2 rounded-md font-medium hover:bg-blue-500 hover:text-white focus:text-white focus:bg-blue-500 focus:shadow-outline"
           >
-            <span className="text-gray-600">
-              <svg
-                className="h-5"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"
-                ></path>
-              </svg>
-            </span>
+            <FaPhoneAlt className=" h-5" />
             <span>Change Contact</span>
           </Link>
         </li>
         <li onClick={() => setActiveComponent('view-tin')}>
           <Link
             to="#"
-            className="flex items-center space-x-3 text-gray-700 p-2 rounded-md font-medium hover:bg-gray-200 focus:bg-gray-200 focus:shadow-outline"
+            className="flex items-center space-x-3 text-gray-700 p-2 rounded-md font-medium hover:bg-blue-500 hover:text-white focus:text-white focus:bg-blue-500 focus:shadow-outline"
           >
-            <span className="text-gray-600">
-              <svg
-                className="h-5"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-                />
-              </svg>
-            </span>
+            <FaCertificate className=" h-5" />
             <span>View TIN Certificate</span>
           </Link>
         </li>
         <li onClick={() => setActiveComponent('generate-ticket')}>
           <Link
             to="#"
-            className="flex items-center space-x-3 text-gray-700 p-2 rounded-md font-medium hover:bg-gray-200 focus:bg-gray-200 focus:shadow-outline"
+            className="flex items-center space-x-3 text-gray-700 p-2 rounded-md font-medium hover:bg-blue-500 hover:text-white focus:text-white focus:bg-blue-500 focus:shadow-outline"
           >
-            <span className="text-gray-600">
-              <svg
-                className="h-5"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-                />
-              </svg>
-            </span>
+            <FaTicketAlt className=" h-5" />
             <span>Generate Ticket</span>
           </Link>
         </li>
         <li onClick={() => setActiveComponent('ticket-status')}>
           <Link
             to="#"
-            className="flex items-center space-x-3 text-gray-700 p-2 rounded-md font-medium hover:bg-gray-200 focus:bg-gray-200 focus:shadow-outline"
+            className="flex items-center space-x-3 text-gray-700 p-2 rounded-md font-medium hover:bg-blue-500 hover:text-white focus:text-white focus:bg-blue-500 focus:shadow-outline"
           >
-            <span className="text-gray-600">
-              <svg
-                className="h-5"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"
-                />
-              </svg>
-            </span>
+            <FaSearch className=" h-5" />
             <span>Ticket Status</span>
           </Link>
         </li>
         <li onClick={() => setActiveComponent('reissue-status')}>
           <Link
-            to=""
-            className="flex items-center space-x-3 text-gray-700 p-2 rounded-md font-medium hover:bg-gray-200 focus:bg-gray-200 focus:shadow-outline"
+            to="#"
+            className="flex items-center space-x-3 text-gray-700 p-2 rounded-md font-medium hover:bg-blue-500 hover:text-white focus:text-white focus:bg-blue-500 focus:shadow-outline"
           >
-            <span className=" text-gray-600">
-              <svg
-                className="h-5"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
-                />
-              </svg>
-            </span>
+            <FaSyncAlt className=" h-5" />
             <span>Reissue Status</span>
           </Link>
         </li>
         <li onClick={() => setActiveComponent('vat-or-business')}>
           <Link
             to="#"
-            className="flex items-center space-x-3 text-gray-700 p-2 rounded-md font-medium hover:bg-gray-200 focus:bg-gray-200 focus:shadow-outline"
+            className="flex items-center space-x-3 text-gray-700 p-2 rounded-md font-medium hover:bg-blue-500 hover:text-white focus:text-white focus:bg-blue-500 focus:shadow-outline"
           >
-            <span className="text-gray-600">
-              <svg
-                className="h-5"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M8 8H16M8 12H12M8 16H16M4 20H20V8H4v12z"
-                />
-              </svg>
-            </span>
+            <FaInfoCircle className=" h-5" />
             <span>Vat/Business Info</span>
           </Link>
         </li>
         <li onClick={() => setActiveComponent('change-status')}>
           <Link
             to="#"
-            className="flex items-center space-x-3 text-gray-700 p-2 rounded-md font-medium hover:bg-gray-200 focus:bg-gray-200 focus:shadow-outline"
+            className="flex items-center space-x-3 text-gray-700 p-2 rounded-md font-medium hover:bg-blue-500 hover:text-white focus:text-white focus:bg-blue-500 focus:shadow-outline"
           >
-            <span className="text-gray-600">
-              <svg
-                className="h-5"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M13 16h-1v-4h-1m1-4h.01M5 13l4 4L19 7"
-                />
-              </svg>
-            </span>
+            <FaEdit className=" h-5" />
             <span>Change Status</span>
           </Link>
         </li>
         <li onClick={() => setActiveComponent('update-tin')}>
           <Link
             to="#"
-            className="flex items-center space-x-3 text-gray-700 p-2 rounded-md font-medium hover:bg-gray-200 focus:bg-gray-200 focus:shadow-outline"
+            className="flex items-center space-x-3 text-gray-700 p-2 rounded-md font-medium hover:bg-blue-500 hover:text-white focus:text-white focus:bg-blue-500 focus:shadow-outline"
           >
-            <span className="text-gray-600">
-              <svg
-                className="h-5"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M15.232 7.757l1.415 1.415m0 0L6.343 19.071H4v-2.343l10.607-10.607z"
-                />
-              </svg>
-            </span>
+            <FaFileSignature className=" h-5" />
             <span>Edit/Correct/Update</span>
           </Link>
         </li>
         <li onClick={() => setActiveComponent('request-status')}>
           <Link
             to="#"
-            className="flex items-center space-x-3 text-gray-700 p-2 rounded-md font-medium hover:bg-gray-200 focus:bg-gray-200 focus:shadow-outline"
+            className="flex items-center space-x-3 text-gray-700 p-2 rounded-md font-medium hover:bg-blue-500 hover:text-white focus:text-white focus:bg-blue-500 focus:shadow-outline"
           >
-            <span className="text-gray-600">
-              <svg
-                className="h-5"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M3 7h18M9 3v4M15 3v4M5 13h14v8H5v-8z"
-                />
-              </svg>
-            </span>
+            <FaFileAlt className=" h-5" />
             <span>View Request Status</span>
           </Link>
         </li>
@@ -335,24 +156,9 @@ const Sidebar = ({ setActiveComponent }) => {
           <Link
             to="https://google.com"
             target="_blank"
-            className="flex items-center space-x-3 text-gray-700 p-2 rounded-md font-medium hover:bg-gray-200 focus:bg-gray-200 focus:shadow-outline"
+            className="flex items-center space-x-3 text-gray-700 p-2 rounded-md font-medium hover:bg-blue-500 hover:text-white focus:text-white focus:bg-blue-500 focus:shadow-outline"
           >
-            <span className="text-gray-600">
-              <svg
-                className="h-5"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M10 14l2-2m0 0l2-2m-2 2H4m12 4h-1l-2 4H7l-2-4H4"
-                />
-              </svg>
-            </span>
+            <FaHome className=" h-5" />
             <span>Goto e-Return</span>
           </Link>
         </li>

@@ -1,18 +1,28 @@
 import { FiPhone, FiMail, FiMapPin } from 'react-icons/fi';
+import backgroundImage from '../img/BG3.png'; // Import your background image
 
 export default function ContactUs() {
     return (
-        <div className="min-h-screen bg-gray-50 flex flex-col ">
-            <main className="flex-grow container mx-auto px-4 py-12 mt-10 mb-10">
-                <h2 className="text-4xl font-bold text-center mb-8 text-gray-800">Contact Us</h2>
+        <div
+            className="h-screen bg-cover bg-center flex flex-col pt-10"
+            style={{ backgroundImage: `url(${backgroundImage})` }}
+        >
+            <main className="flex-grow container mx-auto px-4 md:py-16">
+                <h2 className="text-4xl font-bold text-center mb-8 text-gray-800">
+                    Contact Us
+                </h2>
 
-                <div className="grid md:grid-cols-2 gap-8">
+                <div className="grid md:grid-cols-2 gap-8 mb-12">
                     {/* Contact Form */}
                     <div className="bg-white p-6 rounded-lg shadow-md transition-transform transform hover:scale-105 hover:shadow-lg">
-                        <h3 className="text-2xl font-semibold mb-4 text-gray-800">Get in Touch</h3>
+                        <h3 className="text-2xl font-semibold mb-4 text-gray-800">
+                            Get in Touch
+                        </h3>
                         <form>
                             <div className="mb-4">
-                                <label htmlFor="name" className="block text-gray-700 font-medium mb-2">Name</label>
+                                <label htmlFor="name" className="block text-gray-700 font-medium mb-2">
+                                    Name
+                                </label>
                                 <input 
                                     type="text" 
                                     id="name" 
@@ -22,7 +32,9 @@ export default function ContactUs() {
                                 />
                             </div>
                             <div className="mb-4">
-                                <label htmlFor="email" className="block text-gray-700 font-medium mb-2">Email</label>
+                                <label htmlFor="email" className="block text-gray-700 font-medium mb-2">
+                                    Email
+                                </label>
                                 <input 
                                     type="email" 
                                     id="email" 
@@ -32,7 +44,9 @@ export default function ContactUs() {
                                 />
                             </div>
                             <div className="mb-4">
-                                <label htmlFor="message" className="block text-gray-700 font-medium mb-2">Message</label>
+                                <label htmlFor="message" className="block text-gray-700 font-medium mb-2">
+                                    Message
+                                </label>
                                 <textarea 
                                     id="message" 
                                     name="message" 
@@ -52,7 +66,9 @@ export default function ContactUs() {
 
                     {/* Map Section */}
                     <div className="bg-white p-6 rounded-lg shadow-md transition-transform transform hover:scale-105 hover:shadow-lg">
-                        <h3 className="text-2xl font-semibold mb-4 text-gray-800">Our Location</h3>
+                        <h3 className="text-2xl font-semibold mb-4 text-gray-800">
+                            Our Location
+                        </h3>
                         <div className="bg-white rounded-lg shadow-md overflow-hidden">
                             <iframe 
                                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3651.406205908254!2d90.42292431183627!3d23.768545287988736!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755c7892dcf0001%3A0x853ad729be4edc71!2sEast%20West%20University!5e0!3m2!1sen!2sbd!4v1725576550925!5m2!1sen!2sbd"
