@@ -52,7 +52,7 @@ function Dashboard() {
             <main className='container mx-auto'>
                 <section className='flex'>
                     {/* sidebar */}
-                    <div className='fixed w-1/5 top-0 left-0 px-20 h-screen mt-20 border-r border-gray-200'>
+                    <div className='fixed w-1/5 top-0 left-0 px-20 h-screen mt-20 border-r border-gray-200 shadow-lg'>
                         <Sidebar setActiveComponent={setActiveComponent} />
                     </div>
                     {/* main content */}

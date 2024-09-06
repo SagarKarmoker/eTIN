@@ -1,4 +1,4 @@
-import {useState, useEffect} from 'react'
+import { useState, useEffect } from 'react'
 import axios from 'axios'
 
 function RequestStatus() {
@@ -21,11 +21,11 @@ function RequestStatus() {
         fetchRequests();
     }, [])
 
-  return (
-    <div className='mt-20'>
-        user tin update request status will show here
-    </div>
-  )
+    return (
+        <div className='mt-20'>
+            user tin update request status will show here
+        </div>
+    )
 }
 
 export default RequestStatus
