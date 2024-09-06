@@ -24,7 +24,7 @@ const DownloadTin = () => {
     };
 
     return (
-        <div className="flex flex-col items-center p-4">
+        <div className="flex flex-col items-center p-4 mt-20">
             <div
                 ref={certificateRef}
                 className="relative w-[800px] h-[600px] bg-cover bg-center border-2"

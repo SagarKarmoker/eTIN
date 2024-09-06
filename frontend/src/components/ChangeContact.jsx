@@ -35,7 +35,7 @@ function ChangeContact() {
     }
 
     return (
-        <div className="flex justify-center items-center mt-10">
+        <div className="flex justify-center items-center mt-20">
             <div className="w-1/2 max-w-md bg-white rounded-lg border shadow-md p-6">
                 <h1 className="text-2xl font-semibold text-center text-gray-700 mb-6">Change Contact</h1>
                 <form onSubmit={handleSubmit}>

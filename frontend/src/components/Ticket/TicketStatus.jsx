@@ -23,7 +23,7 @@ function TicketStatus() {
 
 
     return (
-        <div className="min-h-screen  p-6">
+        <div className="min-h-screen mt-20">
             <div className="container border-2 mx-auto bg-white p-6 rounded-lg shadow-md">
                 <h1 className="text-2xl font-bold text-gray-800 mb-6">Ticket Status</h1>
                 {tickets.length === 0 ? (
@@ -31,7 +31,7 @@ function TicketStatus() {
                 ) : (
                     <table className="min-w-full bg-white border border-gray-200 rounded-lg">
                         <thead>
-                            <tr className="bg-gray-200 text-left">
+                            <tr className="bg-blue-500 text-left text-white">
                                 <th className="px-6 py-3 border-b border-gray-300">Ticket Number</th>
                                 <th className="px-6 py-3 border-b border-gray-300">Name</th>
                                 <th className="px-6 py-3 border-b border-gray-300">NID</th>

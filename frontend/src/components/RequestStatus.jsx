@@ -22,7 +22,7 @@ function RequestStatus() {
     }, [])
 
   return (
-    <div>
+    <div className='mt-20'>
         user tin update request status will show here
     </div>
   )
