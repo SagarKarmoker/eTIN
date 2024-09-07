@@ -12,6 +12,7 @@ exports.finalSubmission = async (req, res) => {
         const tin = generateTIN();
 
         const formData = {
+            nid: user.nid,
             registration,
             information: { ...information, tin },
             final_Preview,
@@ -20,34 +21,39 @@ exports.finalSubmission = async (req, res) => {
 
         // Save form data in the database
         const formDataModel = new FormData(formData);
-        await formDataModel.save();
 
         // Convert formData to a JSON string for IPFS
         const formDataJson = JSON.stringify(formData);
 
         // Upload to IPFS
-        const ipfsResult = await ipfs.add(formDataJson); // ipfsResult contains the CID
-
-        // Retrieve the IPFS hash (CID)
+        const ipfsResult = await ipfs.add(formDataJson);
+        
         const ipfsHash = ipfsResult.path;
 
         console.log('Data stored on IPFS with CID:', ipfsHash);
 
-        // Blockchain txn (assuming submitETin is your blockchain function)
-        const { tx } = await submitETin(user.nid, tin, ipfsHash);
+        // Blockchain txn
+        const res = await submitETin(user.nid, tin, ipfsHash);
 
-        if (tx) {
+        await formDataModel.save();
+
+        if (res.tx) {
             console.log('TIN submitted to blockchain');
-            res.status(200).json({ message: 'Data saved successfully', tin, tx });
-        }
-        else{
-            res.status(500).json({ message: 'Error saving data', error });
+            res.status(200).json({ message: 'Data saved successfully', tin, tx: res.tx });
+        } else {
+            res.status(500).json({ message: 'Blockchain transaction failed.' });
         }
     } catch (error) {
-        console.error('Error saving data', error);
-        res.status(500).json({ message: 'Error saving data', error });
+        if (error.response && error.response.status === 403) {
+            console.error('Error 403: Forbidden', error);
+            res.status(403).json({ message: 'Forbidden - Access denied.' });
+        } else {
+            console.error('Error saving data', error);
+            res.status(500).json({ message: 'Error saving data', error });
+        }
     }
 };
+
 
 exports.getTinRecords = async (req, res) => {
     try {

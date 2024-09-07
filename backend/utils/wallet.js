@@ -20,6 +20,7 @@ const TaxShieldBD = require('../abis/TaxShieldBD.json')
 // Smart contract ABI and address
 const WalletContractAddress = "0xd2d031df2edfd36e58d890f7fe602c27263954b1"
 const KYCRegistryContractAddress = "0x18F9c1AeCd8B14448c6845deeEA5D9c17b244202"
+const TaxShieldBDContractAddress = "0xB1d598D2535604DE4E3b819c2e69b764f305F255"
 
 const provider = new ethers.providers.JsonRpcProvider("https://vercel-blockchain-proxy.vercel.app");
 
@@ -78,46 +79,44 @@ const submitETin = async (nid, tin, ipfsHash) => {
         // decrypt shard
         const secret = await decryptShard(nid, "1234");
         const signer = new ethers.Wallet(secret, provider);
-        const contract = new ethers.Contract(TaxShieldBD, TaxShieldBD.abi, signer);
+        const contract = new ethers.Contract(TaxShieldBDContractAddress, TaxShieldBD.abi, signer);
 
         // Send the transaction to store the KYC data on the blockchain
         const tx = await contract.setTIN(nid, tin, ipfsHash, {
             gasPrice: 0
         });
         await tx.wait();
-        console.log(tx)
 
         if (tx !== null) {
             await saveTxDataForWallet(tx, nid, "eTin Submission or Update");
-            return tx;
+            return { tx: tx };
         }
     } catch (error) {
         console.log(error);
     }
 }
 
-
-// Kyc data submit
-const submitKYC = async (ipfsHash, nid) => {
+const saveTxDataForWallet = async (tx, nid, reason) => {
     try {
-        // decrypt shard
-        const secret = await decryptShard(nid, "1234");
-        const signer = new ethers.Wallet(secret, provider);
-        const contract = new ethers.Contract(KYCRegistryContractAddress, KYCRegistryContract.abi, signer);
-
-        // Send the transaction to store the KYC data on the blockchain
-        const tx = await contract.submitKYC(ipfsHash, nid, {
-            gasPrice: 0
+        const transaction = new Transaction({
+            nid: nid,
+            reason: reason,
+            nonce: tx.nonce,
+            gasPrice: tx.gasPrice.toString(),
+            gasLimit: tx.gasLimit.toString(),
+            to: tx.to,
+            value: tx.value.toString(),
+            data: tx.data,
+            chainId: tx.chainId,
+            v: tx.v,
+            r: tx.r,
+            s: tx.s,
+            from: tx.from,
+            hash: tx.hash
         });
-        await tx.wait();
-        console.log(tx)
-
-        if (tx !== null) {
-            await saveTxDataForWallet(tx, nid, "KYC Submission or Update");
-            return tx;
-        }
+        await transaction.save();
     } catch (error) {
-        console.log(error);
+        console.log(error)
     }
 }
 // export the function

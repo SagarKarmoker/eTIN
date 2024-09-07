@@ -4,7 +4,7 @@ const formController = require("../controllers/formController");
 const authMiddleware = require("../middlewares/authMiddleware");
 
 // POST
-router.post("/finalsubmission", formController.finalSubmission);
+router.post("/finalsubmission", authMiddleware, formController.finalSubmission);
 
 // GET
 router.get("/user-tin-records", formController.getTinRecords);
