@@ -304,205 +304,219 @@ const Basic_Information = ({ data, setData }) => {
           </div>
         </div>
       </div>
-      <div className="grid gap-y-2 text-sm grid-cols-1 lg:grid-cols-3">
+      <div className="grid text-sm grid-cols-1 lg:grid-cols-3">
         <br />
         <hr />
-        <h2 className="text-base font-semibold mb-4">
+
+        {/* Current Address Section */}
+        <h2 className="text-base font-semibold mb-4 lg:col-span-3">
           Current Address (For Individual "Present Residential Address")
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-4 mb-4">
-          <div className="md:col-span-3 flex gap-4">
-            <div className="flex-1">
-              <label>Country</label>
-              <select
-                className="h-10 border mt-1 rounded px-4 w-full bg-gray-50 mb-3"
-                id="currentCountry"
-                value={currentCountry}
-                onChange={(e) => setCurrentCountry(e.target.value)}
-              >
-                <option value="none" selected disabled hidden></option>
-                <option>Bangladesh</option>
-              </select>
-            </div>
-            <div className="flex-1">
-              <label>District/State</label>
-              <select
-                className="h-10 border mt-1 rounded px-4 w-full bg-gray-50 mb-3"
-                id="currentDistrict"
-                value={currentDistrict}
-                onChange={(e) => setCurrentDistrict(e.target.value)}
-              >
-                <option value="none" selected disabled hidden></option>
-                <option value="Dhaka">Dhaka</option>
-              </select>
-            </div>
-            <div className="flex-1">
-              <label>Thana</label>
-              <select
-                className="h-10 border mt-1 rounded px-4 w-full bg-gray-50 mb-3"
-                id="currentThana"
-                value={currentThana}
-                onChange={(e) => setCurrentThana(e.target.value)}
-              >
-                <option value="none" selected disabled hidden></option>
-                <option value="Khilgaon">Khilgaon</option>
-              </select>
-            </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4 lg:col-span-3">
+          {/* First Row with 4 Columns */}
+          <div>
+            <label>Country</label>
+            <select
+              className="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
+              id="currentCountry"
+              value={currentCountry}
+              onChange={(e) => setCurrentCountry(e.target.value)}
+            >
+              <option value="none" selected disabled hidden></option>
+              <option>Bangladesh</option>
+            </select>
           </div>
-          <div className="md:col-span-2 flex gap-4">
-            <div className="flex-1">
-              <label>Address</label>
-              <input
-                className="h-10 border mt-1 rounded px-4 w-full bg-gray-50 mb-3"
-                placeholder="Line-1"
-                name="currentAddress"
-                id="currentAddress"
-                value={currentAddress}
-                onChange={(e) => setCurrentAddress(e.target.value)}
-              />
-              <input
-                className="h-10 border mt-1 rounded px-4 w-full bg-gray-50 mb-3"
-                placeholder="Line-2"
-              />
-            </div>
-            <div className="flex-1">
-              <label>Post Code</label>
-              <input
-                className="h-10 border mt-1 rounded px-4 w-full bg-gray-50 mb-3"
-                name="currentPostCode"
-                id="currentPostCode"
-                value={currentPostCode}
-                onChange={(e) => setCurrentPostCode(e.target.value)}
-              />
-            </div>
+
+          <div>
+            <label>District/State</label>
+            <select
+              className="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
+              id="currentDistrict"
+              value={currentDistrict}
+              onChange={(e) => setCurrentDistrict(e.target.value)}
+            >
+              <option value="none" selected disabled hidden></option>
+              <option value="Dhaka">Dhaka</option>
+            </select>
+          </div>
+
+          <div>
+            <label>Thana</label>
+            <select
+              className="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
+              id="currentThana"
+              value={currentThana}
+              onChange={(e) => setCurrentThana(e.target.value)}
+            >
+              <option value="none" selected disabled hidden></option>
+              <option value="Khilgaon">Khilgaon</option>
+            </select>
+          </div>
+
+          <div>
+            <label>Post Code</label>
+            <input
+              className="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
+              name="currentPostCode"
+              id="currentPostCode"
+              value={currentPostCode}
+              onChange={(e) => setCurrentPostCode(e.target.value)}
+            />
           </div>
         </div>
-        <hr />
-        <h2 className="text-md font-bold mb-4">Permanent Address</h2>
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-4 mb-4">
-          <div className="md:col-span-3 flex gap-4">
-            <div className="flex-1">
-              <label>Country</label>
-              <select
-                className="h-10 border mt-1 rounded px-4 w-full bg-gray-50 mb-3"
-                id="permanentCountry"
-                value={permanentCountry}
-                onChange={(e) => setpermanentCountry(e.target.value)}
-              >
-                <option value="none" selected disabled hidden></option>
-                <option>Bangladesh</option>
-              </select>
-            </div>
-            <div className="flex-1">
-              <label>District/State</label>
-              <select
-                className="h-10 border mt-1 rounded px-4 w-full bg-gray-50 mb-3"
-                id="permanentDistrict"
-                value={permanentDistrict}
-                onChange={(e) => setPermanentDistrict(e.target.value)}
-              >
-                <option value="none" selected disabled hidden></option>
-                <option value="Dhaka">Dhaka</option>
-              </select>
-            </div>
-            <div className="flex-1">
-              <label>Thana</label>
-              <select
-                className="h-10 border mt-1 rounded px-4 w-full bg-gray-50 mb-3"
-                id="permanentThana"
-                value={permanentThana}
-                onChange={(e) => setPermanentThana(e.target.value)}
-              >
-                <option value="none" selected disabled hidden></option>
-                <option value="Khilgaon">Khilgaon</option>
-              </select>
-            </div>
+
+        {/* Second Row with 1 Column */}
+        <div className="grid grid-cols-1 md:grid-cols-1 gap-4 mb-4 lg:col-span-3">
+          <div>
+            <label>Address</label>
+            <input
+              className="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
+              placeholder="Line-1"
+              name="currentAddress"
+              id="currentAddress"
+              value={currentAddress}
+              onChange={(e) => setCurrentAddress(e.target.value)}
+            />
           </div>
-          <div className="md:col-span-2 flex gap-4">
-            <div className="flex-1">
-              <label>Address</label>
-              <input
-                className="h-10 border mt-1 rounded px-4 w-full bg-gray-50 mb-3"
-                placeholder="Line-1"
-                id="permanentAddress"
-                value={permanentAddress}
-                onChange={(e) => setPermanentAddress(e.target.value)}
-                readOnly
-              />
-              <input
-                className="h-10 border mt-1 rounded px-4 w-full bg-gray-50 mb-3"
-                placeholder="Line-2"
-              />
-            </div>
-            <div className="flex-1">
-              <label>Post Code</label>
-              <input
-                className="h-10 border mt-1 rounded px-4 w-full bg-gray-50 mb-3"
-                name="permanentPostCode"
-                id="permanentPostCode"
-                value={permanentPostCode}
-                onChange={(e) => setPermanentPostCode(e.target.value)}
-              />
-            </div>
+          <hr />
+        </div>
+
+        {/* Permanent Address Section */}
+        <h2 className="text-md font-bold mb-4 lg:col-span-3">Permanent Address</h2>
+
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4 lg:col-span-3">
+          {/* First Row with 4 Columns */}
+          <div>
+            <label>Country</label>
+            <select
+              className="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
+              id="permanentCountry"
+              value={permanentCountry}
+              onChange={(e) => setpermanentCountry(e.target.value)}
+            >
+              <option value="none" selected disabled hidden></option>
+              <option>Bangladesh</option>
+            </select>
+          </div>
+
+          <div>
+            <label>District/State</label>
+            <select
+              className="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
+              id="permanentDistrict"
+              value={permanentDistrict}
+              onChange={(e) => setPermanentDistrict(e.target.value)}
+            >
+              <option value="none" selected disabled hidden></option>
+              <option value="Dhaka">Dhaka</option>
+            </select>
+          </div>
+
+          <div>
+            <label>Thana</label>
+            <select
+              className="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
+              id="permanentThana"
+              value={permanentThana}
+              onChange={(e) => setPermanentThana(e.target.value)}
+            >
+              <option value="none" selected disabled hidden></option>
+              <option value="Khilgaon">Khilgaon</option>
+            </select>
+          </div>
+
+          <div>
+            <label>Post Code</label>
+            <input
+              className="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
+              name="permanentPostCode"
+              id="permanentPostCode"
+              value={permanentPostCode}
+              onChange={(e) => setPermanentPostCode(e.target.value)}
+            />
           </div>
         </div>
-        <hr />
-        <h2 className="text-md font-bold mb-4">
-          Other Address (Working / Business Address)
-        </h2>
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
-          <div className="md:col-span-3 flex gap-4">
-            <div className="flex-1">
-              <label>Country</label>
-              <select className="h-10 border mt-1 rounded px-4 w-full bg-gray-50 mb-3">
-                <option value="none" selected disabled hidden></option>
-                <option>Bangladesh</option>
-              </select>
-            </div>
-            <div className="flex-1">
-              <label>District/State</label>
-              <select
-                className="h-10 border mt-1 rounded px-4 w-full bg-gray-50 mb-3"
-                id="otherDistrict"
-                value={otherDistrict}
-                onChange={(e) => setOtherDistrict(e.target.value)}
-              >
-                <option value="none" selected disabled hidden></option>
-                <option value="Dhaka">Dhaka</option>
-              </select>
-            </div>
-            <div className="flex-1">
-              <label>Thana</label>
-              <select
-                className="h-10 border mt-1 rounded px-4 w-full bg-gray-50 mb-3"
-                id="otherThana"
-                value={otherThana}
-                onChange={(e) => setOtherThana(e.target.value)}
-              >
-                <option value="none" selected disabled hidden></option>
-                <option value="Khilgaon">Khilgaon</option>
-              </select>
-            </div>
+
+        {/* Second Row with 1 Column */}
+        <div className="grid grid-cols-1 md:grid-cols-1 gap-4 mb-4 lg:col-span-3">
+          <div>
+            <label>Address</label>
+            <input
+              className="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
+              placeholder="Line-1"
+              id="permanentAddress"
+              value={permanentAddress}
+              onChange={(e) => setPermanentAddress(e.target.value)}
+            />
           </div>
-          <div className="md:col-span-2 flex gap-4">
-            <div className="flex-1">
-              <label>Address</label>
-              <input
-                className="h-10 border mt-1 rounded px-4 w-full bg-gray-50 mb-3"
-                placeholder="Line-1"
-              />
-              <input
-                className="h-10 border mt-1 rounded px-4 w-full bg-gray-50 mb-3"
-                placeholder="Line-2"
-              />
-            </div>
-            <div className="flex-1">
-              <label>Post Code</label>
-              <input className="h-10 border mt-1 rounded px-4 w-full bg-gray-50 mb-3" />
-            </div>
+          <hr />
+        </div>
+
+        
+
+        {/* Other Address Section */}
+        <h2 className="text-md font-bold mb-4 lg:col-span-3">Other Address (Working / Business Address)</h2>
+
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 lg:col-span-3">
+          {/* First Row with 4 Columns */}
+          <div>
+            <label>Country</label>
+            <select
+              className="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
+            >
+              <option value="none" selected disabled hidden></option>
+              <option>Bangladesh</option>
+            </select>
+          </div>
+
+          <div>
+            <label>District/State</label>
+            <select
+              className="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
+              id="otherDistrict"
+              value={otherDistrict}
+              onChange={(e) => setOtherDistrict(e.target.value)}
+            >
+              <option value="none" selected disabled hidden></option>
+              <option value="Dhaka">Dhaka</option>
+            </select>
+          </div>
+
+          <div>
+            <label>Thana</label>
+            <select
+              className="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
+              id="otherThana"
+              value={otherThana}
+              onChange={(e) => setOtherThana(e.target.value)}
+            >
+              <option value="none" selected disabled hidden></option>
+              <option value="Khilgaon">Khilgaon</option>
+            </select>
+          </div>
+
+          <div>
+            <label>Post Code</label>
+            <input
+              className="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
+            />
+          </div>
+        </div>
+
+        {/* Second Row with 1 Column */}
+        <div className="grid grid-cols-1 md:grid-cols-1 gap-4 lg:col-span-3">
+          <div>
+            <label>Address</label>
+            <input
+              className="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
+              placeholder="Line-1"
+            />
           </div>
         </div>
       </div>
+
+
     </>
   );
 };
