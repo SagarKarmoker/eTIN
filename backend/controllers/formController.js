@@ -1,21 +1,50 @@
 const FormData = require("../models/formModel");
 const { generateTIN } = require("../utils/tinGenerator");
+const { getWalletAddress, submitETin } = require("../utils/wallet");
 
 exports.finalSubmission = async (req, res) => {
     try {
+        const { create } = await import('ipfs-http-client');
+        const ipfs = create({ url: "http://127.0.0.1:5001/api/v0/add" });
+
+        const { user } = req;
         const { registration, information, final_Preview, finalSubmission } = req.body;
         const tin = generateTIN();
 
-        const formData = new FormData({
+        const formData = {
             registration,
             information: { ...information, tin },
             final_Preview,
             finalSubmission,
-        });
+        };
 
-        await formData.save();
-        res.status(200).json({ message: 'Data saved successfully', tin });
+        // Save form data in the database
+        const formDataModel = new FormData(formData);
+        await formDataModel.save();
+
+        // Convert formData to a JSON string for IPFS
+        const formDataJson = JSON.stringify(formData);
+
+        // Upload to IPFS
+        const ipfsResult = await ipfs.add(formDataJson); // ipfsResult contains the CID
+
+        // Retrieve the IPFS hash (CID)
+        const ipfsHash = ipfsResult.path;
+
+        console.log('Data stored on IPFS with CID:', ipfsHash);
+
+        // Blockchain txn (assuming submitETin is your blockchain function)
+        const { tx } = await submitETin(user.nid, tin, ipfsHash);
+
+        if (tx) {
+            console.log('TIN submitted to blockchain');
+            res.status(200).json({ message: 'Data saved successfully', tin, tx });
+        }
+        else{
+            res.status(500).json({ message: 'Error saving data', error });
+        }
     } catch (error) {
+        console.error('Error saving data', error);
         res.status(500).json({ message: 'Error saving data', error });
     }
 };
@@ -50,10 +79,15 @@ exports.getMyTin = async (req, res) => {
         const { user } = req;
         const findTin = await FormData.findOne(
             { "nid": user.nid },
-        )
+        )  
 
         console.log(findTin)
-        res.status(200).json(findTin);
+
+        if(findTin){
+            res.status(200).json(findTin);
+        }else{
+            res.status(404).json({ message: 'TIN not found' });
+        }
     } catch (error) {
         res.status(500).json({ message: "Error fetching TIN records", error });
     }
