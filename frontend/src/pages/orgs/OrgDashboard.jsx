@@ -2,12 +2,12 @@ import React from 'react';
 
 function OrgDashboard() {
   return (
-    <div className="min-h-screen flex flex-col bg-gray-100">
+    <div className="min-h-screen flex flex-col bg-gray-100 mt-20">
       {/* Main Content Area */}
       <div className="flex flex-grow">
         {/* Sidebar */}
         <aside className="w-64 bg-white shadow-lg">
-          <div className="p-6">
+          <div className="fixed p-6">
             <h2 className="text-xl font-semibold text-gray-700 mb-6">Navigation</h2>
             <nav>
               <ul>
