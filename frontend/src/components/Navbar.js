@@ -222,7 +222,7 @@ function Navbar() {
               className="hidden lg:inline-block py-2 px-6 bg-[#2563eb] hover:bg-[#2563eb] text-sm text-white font-bold rounded-xl transition duration-200"
               to="/login"
             >
-              Sign In
+              Sign In with eKYC
             </Link>
           )}
         </nav>

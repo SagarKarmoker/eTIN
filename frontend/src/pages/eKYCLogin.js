@@ -72,8 +72,9 @@ function Login() {
             <div className="flex min-h-screen items-center justify-center">
                 <div className="relative flex flex-col rounded-xl bg-transparent bg-clip-border text-gray-700 shadow-none">
                 <h4 className="block font-sans text-4xl font-semibold leading-snug tracking-normal text-blue-gray-900 antialiased">
-                    Sign In
+                    Sign in with eKYC
                 </h4>
+                <p>Use the same credientcial of eKYC</p>
                 <form
                     className="mt-8 mb-40 w-80 max-w-screen-lg sm:w-96"
                     onSubmit={handleLogin}
