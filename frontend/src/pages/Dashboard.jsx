@@ -48,7 +48,7 @@ function Dashboard() {
     const [activeComponent, setActiveComponent] = useState('welcome');
 
     return (
-        <div className='min-h-screen bg-gray-50'>
+        <div className='min-h-screen mt-20 bg-gray-50'>
             <main className='container mx-auto'>
                 <section className='flex'>
                     {/* sidebar */}
@@ -56,7 +56,7 @@ function Dashboard() {
                         <Sidebar setActiveComponent={setActiveComponent} />
                     </div>
                     {/* main content */}
-                    <div className='ml-[20%] flex-1 p-6'>
+                    <div className='ml-[20%] flex-1 '>
                         <MainContent activeComponent={activeComponent} />
                     </div>
                 </section>
