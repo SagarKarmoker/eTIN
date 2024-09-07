@@ -11,6 +11,14 @@ exports.finalSubmission = async (req, res) => {
         const { registration, information, final_Preview, finalSubmission } = req.body;
         const tin = generateTIN();
 
+        const findTin = await FormData.findOne({
+            "information.tin": tin,
+        });
+
+        if (findTin) {
+            return res.status(409).json({ message: 'TIN already exists' });
+        }
+
         const formData = {
             nid: user.nid,
             registration,
