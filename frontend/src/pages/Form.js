@@ -85,15 +85,16 @@ const Form = () => {
 
     try {
       setData({ ...data, finalSubmission: true });
-      const response = await axios.post(
-        "http://localhost:3001/api/form/finalsubmission",
-        {
-          registration,
-          information,
-          final_Preview,
-          finalSubmission: true,
+      const response = await axios.post("http://localhost:3001/api/form/finalsubmission", {
+        registration,
+        information,
+        final_Preview,
+        finalSubmission: true,
+      }, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`
         }
-      );
+      })
 
       const tin = response.data.tin; // Get TIN from the response
       Swal.fire({
@@ -223,11 +224,10 @@ const Form = () => {
                     onClick={() => {
                       setPage((currPage) => currPage - 1);
                     }}
-                    className={`flex items-center justify-center w-1/2 rounded-xl border border-transparent bg-blue-500 py-2 px-4 text-sm font-medium text-white shadow-md transition duration-300 ease-in-out transform ${
-                      page === 0
-                        ? "opacity-50 cursor-not-allowed"
-                        : "hover:bg-blue-600 hover:shadow-lg"
-                    } focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2`}
+                    className={`flex items-center justify-center w-1/2 rounded-xl border border-transparent bg-blue-500 py-2 px-4 text-sm font-medium text-white shadow-md transition duration-300 ease-in-out transform ${page === 0
+                      ? "opacity-50 cursor-not-allowed"
+                      : "hover:bg-blue-600 hover:shadow-lg"
+                      } focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2`}
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"

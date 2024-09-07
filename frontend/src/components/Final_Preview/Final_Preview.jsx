@@ -68,7 +68,7 @@ const Final_Preview = ({ data, setData }) => {
 
   return (
     <>
-      <form className="w-full max-w-lg px-6">
+      <form className="w-full px-6">
         <div className="flex flex-wrap -mx-3 mb-6">
           <div className="w-full px-3">
             <label htmlFor="taxpayer-name">Taxpayer's Name</label>
