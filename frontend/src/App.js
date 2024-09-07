@@ -33,7 +33,9 @@ function App() {
         {/* ThirdParty */}
         {isUserSignedIn && role == 'Organization' && <Route path="/organization" element={<OrgDashboard />} />}
         {isUserSignedIn && role == 'Organization' || role == 'Admin' && <Route path="/thirdParty" element={<ThirdParty />} />}
-        {isUserSignedIn && role == 'Organization' || role == 'Admin' && <Route path="/details/:tin" element={<ViewMore />} />}
+        {(isUserSignedIn && (role === 'Organization' || role === 'Admin')) && (
+          <Route path="/details/:tin" element={<ViewMore />} />
+        )}
 
         <Route path="/thirdParty" element={<ThirdParty />} />
       </Routes>

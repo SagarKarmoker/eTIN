@@ -9,30 +9,33 @@ function ViewMore() {
 
     useEffect(() => {
         const fetchUserDetails = async () => {
-            if (role !== 'Organization') return;
-            if (tin === undefined) return;
-    
+            // Corrected role check
+            if (role !== 'Organization' && role !== 'Admin') return;
+            if (!tin) return;  // Improved check for undefined tin
+
             try {
                 const response = await axios.get(`http://localhost:3001/api/form/get-user-tin-details/${tin}`, {
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem("token")}`,
                     }
                 });
+
+                console.log(response.data);
                 setUserDetails(response.data);
             } catch (error) {
                 console.error("Error fetching records:", error);
             }
         };
-    
+
         fetchUserDetails();
-    }, [tin, role]);    
+    }, [tin, role]);
 
     return (
-        <div className="max-w-4xl mx-auto p-6 bg-white shadow-md rounded-lg mb-10 border-2">
+        <div className="max-w-4xl mx-auto p-6 bg-white shadow-md rounded-lg mb-10 border-2 mt-20">
             <h1 className="text-3xl font-bold text-center text-gray-800 mb-8">
                 {userDetails.information ? `TIN #${userDetails.information.tin} Details` : 'Loading...'}
             </h1>
-    
+
             {userDetails.information && userDetails.registration ? (
                 <div className="space-y-6 mx-24">
                     {/* Registration Details */}
@@ -46,7 +49,7 @@ function ViewMore() {
                         <p><span className="font-medium">Location:</span> {userDetails.registration.location}</p>
                         <p><span className="font-medium">Service Location:</span> {userDetails.registration.serviceLocation}</p>
                     </div>
-    
+
                     {/* Information */}
                     <div className="border-b pb-4">
                         <h2 className="text-xl font-semibold text-gray-700 mb-2">Personal Information</h2>
@@ -74,7 +77,7 @@ function ViewMore() {
                         <p><span className="font-medium">Other Thana:</span> {userDetails.information.otherThana}</p>
                         <p><span className="font-medium">TIN:</span> {userDetails.information.tin}</p>
                     </div>
-    
+
                     {/* Final Preview */}
                     <div className="border-b pb-4">
                         <h2 className="text-xl font-semibold text-gray-700 mb-2">Final Preview</h2>
@@ -82,7 +85,7 @@ function ViewMore() {
                         <p><span className="font-medium">Taxes Zone:</span> {userDetails.final_Preview.taxesZone}</p>
                         <p><span className="font-medium">Taxes Circle:</span> {userDetails.final_Preview.taxesCircle}</p>
                     </div>
-    
+
                     {/* Final Submission */}
                     <div>
                         <h2 className="text-xl font-semibold text-gray-700 mb-2">Final Submission</h2>
@@ -94,7 +97,7 @@ function ViewMore() {
             )}
         </div>
     );
-    
+
 }
 
 export default ViewMore;

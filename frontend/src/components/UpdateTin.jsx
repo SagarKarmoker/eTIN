@@ -8,7 +8,7 @@ function UpdateTin() {
     // TODO: Update tin info will be stored on a differtent database if admin approve then update the existing data
     const fetchOldData = async () => {
         try {
-            const response = await axios.put('http://localhost:3001/api/form/update-tin', {
+            const response = await axios.get('http://localhost:3001/api/form/my-tin', {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`,
                 },
